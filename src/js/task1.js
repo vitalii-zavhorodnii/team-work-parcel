@@ -5,17 +5,25 @@ const ref = {
 }
 const arr = [];
 
+const createItems = (array) => array.map((element) => {
+    const item = document.createElement('li');
+    const title = document.createElement('h2');
+    const text = document.createElement('p');
+    title.textContent = element.title;
+    text.textContent = element.text;
+    item.append(title, text);
+    return item;
+})
+
 const onSubmit = (event) => {
     event.preventDefault()
-    console.log({ title: event.target[0].value, text: event.target[1].value
-    })
     const toDo = {
         title: event.target[0].value,
         text: event.target[1].value
     }
     arr.push(toDo);
-    console.log(arr);
-
+    event.target.reset();
+    ref.list.append(...createItems(arr));
 }
 ref.form.addEventListener('submit', onSubmit);
 
