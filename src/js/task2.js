@@ -12,3 +12,9 @@ refs.input.addEventListener(
     console.log(e.target.value);
   }, 1000),
 );
+
+document.addEventListener('scroll', throttle(e => {
+  refs.textElement.textContent = +refs.textElement.textContent + 1;
+}, 1000))
+console.log(document.body);
+
